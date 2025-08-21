@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Lo Shintoismo nei Manga – Compendio completo (100 titoli + ricerca)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root{ --ink:#1f2937; --muted:#6b7280; --bg:#fff; --card:#f8fafc; --accent:#ef4444; --link:#0ea5e9; --ok:#16a34a; --line:#e5e7eb; }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+    header{padding:22px 16px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff,#fdf2f2)}
+    h1{margin:0 0 4px;font-size:clamp(22px,3.2vw,32px)}
+    .sub{color:var(--muted);margin:0}
+    .wrap{max-width:1040px;margin:0 auto;padding:0 12px}
+    nav#toc{padding:10px 0 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap}
+    nav#toc a{color:var(--link);text-decoration:none;background:#e0f2fe;padding:6px 10px;border-radius:999px;font-size:.92rem}
+    .tools{display:grid;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}
+    .searchbar{display:flex;gap:8px;align-items:center}
+    .searchbar input{flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:1rem}
+    .btn{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer}
+    .btn:hover{background:#f3f4f6}
+    .hint{color:var(--muted);font-size:.9rem}
+    .count{color:var(--ok);font-weight:600}
+    h2{margin:28px 0 8px;border-left:6px solid var(--accent);padding-left:10px}
+    section{padding:12px 0 18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+    article{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+    article h3{margin:.1rem 0 .4rem;font-size:1.05rem}
+    .jp{color:#111827;font-weight:600}
+    .meta{font-size:.92rem;color:var(--muted)}
+    .desc{margin:.5rem 0 0;font-size:.95rem}
+    .badge{font-size:.72rem;color:#64748b;background:#e2e8f0;border-radius:4px;padding:2px 6px;margin-left:6px}
+    .index{font-size:.92rem}
+    .index ul{columns:3;column-gap:20px;margin:0;padding-left:18px}
+    .foot{color:var(--muted);font-size:.88rem;margin:18px 0 40px}
+    .anchor{scroll-margin-top:96px}
+    mark{background:#fffbcc;padding:0 2px}
+  </style>
+</head>
+<body>
+<header class="wrap">
+  <h1>Lo Shintoismo nei Manga</h1>
+  <p class="sub">Compendio di opere che toccano <em>kami</em>, santuari, <em>yōkai</em>, onmyōdō ed esorcismi. Versione senza immagini, con ricerca.</p>
+</header>
+
+<nav id="toc" class="wrap" aria-label="Indice">
+  <a href="#kami">Kami, santuari e miko</a>
+  <a href="#yokai">Yōkai e folklore</a>
+  <a href="#onmyodo">Onmyōdō, esorcismi e sincretismi</a>
+  <a href="#oneshot">One‑shot e antologie affini</a>
+</nav>
+
+<section class="wrap tools" aria-label="Strumenti">
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="Cerca per titolo, autore, anno, termini (es. tsukumogami, miko, onmyōji)…" autocomplete="off" />
+    <button class="btn" id="clearBtn" type="button">Pulisci</button>
+  </div>
+  <div class="hint">
+    <span class="count" id="counter"></span> · Filtra in tempo reale. Prova: <code>Inari</code>, <code>tsukumogami</code>, <code>onmyōji</code>, <code>volpe</code>.
+  </div>
+</section>
+
+<main class="wrap">
+  <section class="index">
+    <h2>Indice analitico (A‑Z)</h2>
+    <ul>
+      <li><a href="#noragami">Noragami</a></li>
+      <li><a href="#natsume">Natsume degli spiriti</a></li>
+      <li><a href="#kamisamakiss">Kamisama Kiss</a></li>
+      <li><a href="#gingitsune">Gingitsune</a></li>
+      <li><a href="#kitaro">Kitaro dei cimiteri</a></li>
+      <li><a href="#mushishi">Mushishi</a></li>
+      <li><a href="#onmyoji">Onmyōji</a></li>
+      <li><a href="#xxxholic">xxxHOLiC</a></li>
+      <li><a href="#blueex">Blue Exorcist</a></li>
+      <li><a href="#twinstar">Twin Star Exorcists</a></li>
+      <li><a href="#tokyoravens">Tokyo Ravens</a></li>
+      <li><a href="#nube">Hell Teacher Nūbē</a></li>
+      <li><a href="#garei">Ga‑Rei</a></li>
+      <li><a href="#dororo">Dororo</a></li>
+      <li><a href="#inuboku">Inu × Boku SS</a></li>
+      <li><a href="#kamichu">Kamichu!</a></li>
+      <li><a href="#yokaiwatch">Yo‑kai Watch</a></li>
+      <li><a href="#hozuki">Hōzuki no Reitetsu</a></li>
+      <li><a href="#jujutsu">Jujutsu Kaisen</a></li>
+      <li><a href="#kimetsu">Demon Slayer: Kimetsu no Yaiba</a></li>
+      <li><a href="#inspectre">In/Spectre</a></li>
+      <li><a href="#ayakashi-triangle">Ayakashi Triangle</a></li>
+      <li><a href="#elegantapartment">Elegant Yokai Apartment Life</a></li>
+    </ul>
+  </section>
+
+  <!-- MACRO AREA 1: KAMI -->
+  <section id="kami" class="anchor">
+    <h2>MACRO‑AREA 1 · Kami, santuari e <em>miko</em></h2>
+    <div class="grid">
+      <article id="noragami" data-tags="kami santuario shinki shonen"><h3>Noragami <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">ノラガミ</span> · Autore: Adachitoka · 2010–</div><p class="desc">Un dio minore senza santuario cerca di farsi strada nel mondo moderno con la sua <em>shinki</em>, tra contratti da 5 yen e purificazioni.</p></article>
+      <article id="kamisamakiss" data-tags="kami santuario miko shojo"><h3>Kamisama Kiss <span class="badge">shōjo</span></h3><div class="meta"><span class="jp">神様はじめました</span> · Autrice: Julietta Suzuki · 2008–2016</div><p class="desc">Una studentessa diventa la nuova divinità di un santuario: volpi divine, yōkai e doveri da <em>kami</em>.</p></article>
+      <article id="inari" data-tags="inari volpe santuario seinen"><h3>Inari, Konkon, Koi Iroha <span class="badge">seinen</span></h3><div class="meta"><span class="jp">いなり、こんこん、恋いろは。</span> · Autrice: Morohe Yoshida · 2010–2015</div><p class="desc">Poteri donati dalla dea di Fushimi Inari e vita tra torii, volpi e desideri.</p></article>
+      <article id="gingitsune" data-tags="inari santuario slice seinen"><h3>Gingitsune <span class="badge">seinen</span></h3><div class="meta"><span class="jp">ぎんぎつね</span> · Autrice: Sayori Ochiai · 2009–</div><p class="desc">Cronache serene di un piccolo santuario Inari e del suo messaggero volpe.</p></article>
+      <article id="kannagi" data-tags="kami santuario shonen"><h3>Kannagi: Crazy Shrine Maidens <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">かんなぎ</span> · Autrice: Eri Takenashi · 2006–</div><p class="desc">Una dea del sacro albero si “risveglia” da una scultura: gag e purificazioni.</p></article>
+      <article id="asagiri" data-tags="miko onmyodo shonen"><h3>Shrine of the Morning Mist <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">朝霧の巫女</span> · Autore: Hiroki Ugawa · 2000–2013</div><p class="desc">Sorelle <em>miko</em> e un “consiglio delle sacerdotesse” proteggono il confine dagli spiriti.</p></article>
+      <article id="kamisamadolls" data-tags="kami mecha village seinen"><h3>Kamisama Dolls <span class="badge">seinen</span></h3><div class="meta"><span class="jp">神様ドォルズ</span> · Autore: Hajime Yamamura · 2006–2013</div><p class="desc">Antichi “dei” meccanici (<em>kakashi</em>) legati a lignaggi di un villaggio.</p></article>
+      <article id="kamichu" data-tags="kami dea studentessa slice manga"><h3>Kamichu! (manga) <span class="badge">slice</span></h3><div class="meta"><span class="jp">かみちゅ!</span> · Autore manga: Hanaharu Naruko · 2005–2007</div><p class="desc">Una ragazzina si sveglia ed è diventata una dea shintoista: vita quotidiana a Onomichi tra piccole divinità e rituali.</p></article>
+      <article id="kamisamakazoku" data-tags="kami famiglia commedia manga"><h3>Kamisama Kazoku (manga)</h3><div class="meta"><span class="jp">神様家族</span> · Autore: Yoshikazu Kuwashima · Disegni: TaPari · 2005–2008</div><p class="desc">Figlio di una famiglia di dei vive tra gli umani per “imparare” ad essere un dio migliore.</p></article>
+    </div>
+  </section>
+
+  <!-- MACRO AREA 2: YOKAI -->
+  <section id="yokai" class="anchor">
+    <h2>MACRO‑AREA 2 · Yōkai e folklore</h2>
+    <div class="grid">
+      <article id="natsume" data-tags="yokai libro amicizia shojo"><h3>Natsume degli spiriti <span class="badge">shōjo</span></h3><div class="meta"><span class="jp">夏目友人帳</span> · Autrice: Yuki Midorikawa · Avvio: 2003/2007</div><p class="desc">Restituire i nomi agli yōkai dal “Libro degli Amici”: pietas e folklore.</p></article>
+      <article id="zakuro" data-tags="meiji yokai romance seinen"><h3>Otome Yōkai Zakuro <span class="badge">seinen</span></h3><div class="meta"><span class="jp">おとめ妖怪 ざくろ</span> · Autrice: Lily Hoshino · 2006–</div><p class="desc">Meiji alternativo: mezzo‑spiriti e ufficiali cooperano in un ministero degli spiriti.</p></article>
+      <article id="konohana" data-tags="volpi locanda slice seinen"><h3>Konohana Kitan <span class="badge">seinen</span></h3><div class="meta"><span class="jp">このはな綺譚</span> · Autrice: Sakuya Amano · 2009/2014–</div><p class="desc">Volpine del folklore gestiscono una locanda termale per kami e spiriti.</p></article>
+      <article id="nekogami" data-tags="dea gatto commedia seinen"><h3>Nekogami Yaoyorozu <span class="badge">seinen</span></h3><div class="meta"><span class="jp">猫神やおよろず</span> · Autori: FLIPFLOPs · 2007–2012</div><p class="desc">Una dea‑gatto “decaduta” tra oggetti sacri e gag divine.</p></article>
+      <article id="hanakokun" data-tags="scuola leggende shonen"><h3>Hanako‑kun (Toilet‑Bound Hanako‑kun) <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">地縛少年花子くん</span> · AidaIro · 2014–</div><p class="desc">Leggende scolastiche, talismani e “sette misteri” tra spiriti legati.</p></article>
+      <article id="yozakura" data-tags="cittadina pilastri convivenza shonen"><h3>Yozakura Quartet <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">夜桜四重奏</span> · Autore: Suzuhito Yasuda · 2006–</div><p class="desc">Città dove umani e yōkai convivono grazie a pilastri spirituali.</p></article>
+      <article id="mushishi" data-tags="mushi natura seinen"><h3>Mushishi <span class="badge">seinen</span></h3><div class="meta"><span class="jp">蟲師</span> · Autrice: Yuki Urushibara · 1999–2008</div><p class="desc">I <em>mushi</em>, essenze primordiali: ricucire squilibri tra uomini e natura animata.</p></article>
+      <article id="mononokean" data-tags="yokai accompagnamento seinen"><h3>The Morose Mononokean <span class="badge">seinen</span></h3><div class="meta"><span class="jp">不機嫌なモノノケ庵</span> · Autrice: Kiri Wazawa · 2013–2021</div><p class="desc">Un “salotto” tra mondi: accompagnare gli yōkai nel ritorno è atto rituale.</p></article>
+      <article id="nura" data-tags="hyakkiyako clan shonen"><h3>Nura: Rise of the Yokai Clan <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">ぬらりひょんの孫</span> · Autore: Hiroshi Shiibashi · 2008–2012</div><p class="desc">Dinastie di yōkai e processioni notturne; erede metà umano, metà spirito.</p></article>
+      <article id="ushio" data-tags="reliquia demoni shonen"><h3>Ushio e Tora <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">うしおととら</span> · Autore: Kazuhiro Fujita · 1990–1996</div><p class="desc">Lancia sacra, templi e demoni ancestrali in chiave avventurosa.</p></article>
+      <article id="kekkaishi" data-tags="barriere luogo sacro shonen"><h3>Kekkaishi – Professione acchiappademoni <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">結界師</span> · Autrice: Yellow Tanabe · 2003–2011</div><p class="desc">Guardiani di un terreno sacro: barriere <em>kekkai</em> contro ayakashi.</p></article>
+      <article id="kitaro" data-tags="classico yokai mediazione"><h3>Kitaro dei cimiteri <span class="badge">classico</span></h3><div class="meta"><span class="jp">ゲゲゲの鬼太郎</span> · Autore: Shigeru Mizuki · dal 1960</div><p class="desc">Il classico che ha popolarizzato gli yōkai: mediazione tra mondi.</p></article>
+      <article id="inuyasha" data-tags="sengoku miko avventura shonen"><h3>Inuyasha <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">犬夜叉</span> · Autrice: Rumiko Takahashi · 1996–2008</div><p class="desc">Era Sengoku tra miko, gioielli sacri e demoni.</p></article>
+      <article id="dororo" data-tags="classico yokai sengoku tezuka"><h3>Dororo</h3><div class="meta"><span class="jp">どろろ</span> · Autore: Osamu Tezuka · 1967–1969</div><p class="desc">Hyakkimaru e il recupero del corpo sottratto dai demoni: viaggio nel Giappone sengoku.</p></article>
+      <article id="yokaiwatch" data-tags="commedia kids yokai"><h3>Yo‑kai Watch (manga)</h3><div class="meta"><span class="jp">妖怪ウォッチ</span> · Autore: Noriyuki Konishi · 2012–2023</div><p class="desc">Avventure per bambini con yōkai della quotidianità (CoroCoro Comic).</p></article>
+      <article id="hozuki" data-tags="inferi folklore satira seinen"><h3>Hōzuki no Reitetsu (Hozuki’s Coolheadedness) <span class="badge">seinen</span></h3><div class="meta"><span class="jp">鬼灯の冷徹</span> · Autrice: Natsumi Eguchi · 2011–2020</div><p class="desc">Burocrazia degli Inferi giapponesi: satira, yōkai e mitologia.</p></article>
+      <article id="blackbird" data-tags="tengu yokai romance shojo"><h3>Black Bird <span class="badge">shōjo</span></h3><div class="meta"><span class="jp">BLACK BIRD</span> · Autrice: Kanoko Sakurakoji · 2006–2012</div><p class="desc">Tengu e “sposa di profezia”: romance soprannaturale.</p></article>
+      <article id="inuboku" data-tags="atavisti yokai romance shojo"><h3>Inu × Boku SS <span class="badge">shōjo</span></h3><div class="meta"><span class="jp">妖狐×僕SS</span> · Autrice: Cocoa Fujiwara · 2009–2014</div><p class="desc">Discendenti di yōkai vivono all’Ayakashi Hall scortati da guardie personali.</p></article>
+      <article id="flyingwitch" data-tags="streghe spiriti slice"><h3>Flying Witch</h3><div class="meta"><span class="jp">ふらいんぐうぃっち</span> · Autrice: Chihiro Ishizuka · 2012–</div><p class="desc">Apprendista strega in Aomori: vita quotidiana con spiriti, tanuki e piccole magie.</p></article>
+      <article id="yuragisou" data-tags="locanda termale fantasmi harem shonen"><h3>Yuuna and the Haunted Hot Springs</h3><div class="meta"><span class="jp">ゆらぎ荘の幽奈さん</span> · Autore: Tadahiro Miura · 2016–2020</div><p class="desc">Pensione termale infestata da una dolce “zashiki‑warashi” e altre presenze.</p></article>
+      <article id="ayakashi-triangle" data-tags="ninja esorcismo ayakashi shonen"><h3>Ayakashi Triangle <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">あやかしトライアングル</span> · Autore: Kentaro Yabuki · 2020–</div><p class="desc">Ninja esorcisti, ayakashi dispettosi e una maledizione che complica i rapporti.</p></article>
+      <article id="inspectre" data-tags="dea saggezza yokai mistery seinen"><h3>In/Spectre (Kyokō Suiri) <span class="badge">seinen</span></h3><div class="meta"><span class="jp">虚構推理</span> · Storia: Kyo Shirodaira · Disegni: Chashiba Katase · 2015–</div><p class="desc">La “dea della saggezza” dei yōkai media conflitti tra spiriti e umani con logica e miti.</p></article>
+      <article id="mokke" data-tags="sorelle spiriti folklore"><h3>Mokke</h3><div class="meta"><span class="jp">もっけ</span> · Autore: Takatoshi Kumakura · 2000s</div><p class="desc">Due sorelle che vedono spiriti imparano a convivere con il folklore locale.</p></article>
+      <article id="kokkuri" data-tags="volpe kokkuri commedia"><h3>Gugure! Kokkuri‑san</h3><div class="meta"><span class="jp">繰繰れ！コックリさん</span> · Autrice: Midori Endō · 2011–2016</div><p class="desc">Uno spirito‑volpe “adoziona” una bambina: gag e superstizioni popolari.</p></article>
+      <article id="enmakun" data-tags="yokai pattuglia classico"><h3>Dororon Enma‑kun</h3><div class="meta"><span class="jp">どろろんえん魔くん</span> · Autore: Go Nagai · 1973–1974</div><p class="desc">Squadra infernale che pattuglia i mostri scappati dall’Inferno nel mondo umano.</p></article>
+      <article id="touhou-sangetsu" data-tags="reimu miko fate fairies"><h3>Touhou Sangetsusei (Three Fairies of Light)</h3><div class="meta"><span class="jp">東方三月精</span> · ZUN & vari artisti · 2007–</div><p class="desc">Le tre fate e la miko Reimu in storie leggere tra boschi, santuari e trickster.</p></article>
+      <article id="touhou-suzunaan" data-tags="reimu libri occulti folklore"><h3>Touhou Suzunaan: Forbidden Scrollery</h3><div class="meta"><span class="jp">東方鈴奈庵</span> · Autore: ZUN · Disegni: Harukawa Moe · 2012–2017</div><p class="desc">Una libraia tratta testi proibiti e casi occulti a Gensokyo, con Reimu e Marisa a supporto.</p></article>
+      <article id="yokaigiga" data-tags="antologia yokai commedia sunday"><h3>Yōkai Giga</h3><div class="meta"><span class="jp">妖怪ギガ</span> · Autore: Satsuki Satō · 2016–2021</div><p class="desc">Vignette e storielle sugli yōkai, tra ironia e tradizione (Weekly Shōnen Sunday).</p></article>
+      <article id="kappa-sanpei" data-tags="kappa mizuki classico"><h3>Kappa no Sanpei</h3><div class="meta"><span class="jp">河童の三平</span> · Autore: Shigeru Mizuki · 1961–1962</div><p class="desc">Un ragazzino kappa tra scherzi acquatici e morale popolare.</p></article>
+      <article id="akumakun" data-tags="occulto demonologia mizuki"><h3>Akuma‑kun</h3><div class="meta"><span class="jp">悪魔くん</span> · Autore: Shigeru Mizuki · 1963–1964 (varie versioni)</div><p class="desc">Bambino prodigio che usa simbologie e spiriti per “migliorare” il mondo: occulto pop giapponese.</p></article>
+      <article id="sengokuyouko" data-tags="youko sengoku avventura"><h3>Sengoku Youko</h3><div class="meta"><span class="jp">戦国妖狐</span> · Autore: Satoshi Mizukami · 2007–2016</div><p class="desc">Una volpe e un umano affrontano mostri e inquisitori in epoca Sengoku.</p></article>
+      <article id="occultcivil" data-tags="ufficio municipale occulto yokai"><h3>Midnight Occult Civil Servants</h3><div class="meta"><span class="jp">真夜中のオカルト公務員</span> · Autrice: Yōko Tamotsu · 2015–</div><p class="desc">Ufficio comunale che media con “Anothers”: diplomazia tra yōkai metropolitani.</p></article>
+      <article id="elegantapartment" data-tags="yokai appartamento slice"><h3>Elegant Yokai Apartment Life</h3><div class="meta"><span class="jp">妖怪アパートの幽雅な日常</span> · Storia: Hinowa Kōzuki · Manga: Waka Miyama · 2011–2021</div><p class="desc">Ragazzo orfano convive con fantasmi e yōkai in un condominio “speciale”.</p></article>
+      <article id="mononokesharing" data-tags="coabitazione yokai commedia"><h3>Mononoke Sharing</h3><div class="meta"><span class="jp">モノノケ社のシェアハウス</span> · Autore: Cool‑kyou Shinja · 2016–2018</div><p class="desc">Coinquiline non‑umane e vita quotidiana in appartamento con mostri.</p></article>
+      <article id="hyakkiyakou" data-tags="famiglia medium antologia"><h3>Hyakki Yakō Shō</h3><div class="meta"><span class="jp">百鬼夜行抄</span> · Autrice: Ichiko Ima · 1995–</div><p class="desc">Cronache di una famiglia di medium e dei loro rapporti con spiriti e ayakashi.</p></article>
+      <article id="ayashimon" data-tags="yakuza yokai shonen"><h3>Ayashimon</h3><div class="meta"><span class="jp">アヤシモン</span> · Autore: Yūji Kaku · 2021–2022</div><p class="desc">Yakuza di yōkai e un protagonista “troppo shōnen” nella Tokyo notturna.</p></article>
+      <article id="ayakashiko" data-tags="pensione yokai slice"><h3>Ayakashiko</h3><div class="meta"><span class="jp">あやかしこ</span> · Autore: HIRO · 2014–</div><p class="desc">Una studentessa vive con la padrona di casa ayakashi: quotidiano caldo e folklorico.</p></article>
+      <article id="aono" data-tags="fantasma liceo romance"><h3>Voglio toccare Aono‑kun… (Aono‑kun ni Sawaritai kara Shinitai)</h3><div class="meta"><span class="jp">青野くんに触りたいから死にたい</span> · Autrice: Umi Shiina · 2016–</div><p class="desc">Storia d’amore con un ragazzo fantasma: dolce, inquieta e prodigiosa.</p></article>
+      <article id="kudan" data-tags="leggenda urbana orrore"><h3>Kudan no Gotoshi</h3><div class="meta"><span class="jp">九段のごとし</span> · Autore: Masasumi Kakizaki · 2014–2015</div><p class="desc">Una profezia del <em>kudan</em> trascina un gruppo nel baratro: horror folklorico.</p></article>
+      <article id="onikirimaru" data-tags="oni spada folklore"><h3>Onikirimaru (Ogre Slayer)</h3><div class="meta"><span class="jp">鬼切丸</span> · Autrice: Kei Kusunoki · 1992–2001</div><p class="desc">Uno spadaccino nato per uccidere gli <em>oni</em>: cicli di vendetta e destino.</p></article>
+      <article id="inugami" data-tags="cane spirito horror"><h3>Inugami</h3><div class="meta"><span class="jp">犬神</span> · Autore: Masaya Hokazono · 1996–2002</div><p class="desc">Legami di sangue e spiriti‑cane: possessioni, maledizioni, desideri oscuri.</p></article>
+      <article id="otogimatsuri" data-tags="santuario arco divino azione"><h3>Otogi Matsuri</h3><div class="meta"><span class="jp">おとぎ奉り</span> · Autore: Junya Inoue · 2002–2008</div><p class="desc">Un arco sacro scelto dal santuario arma uno studente contro gli yōkai.</p></article>
+      <article id="tsukumogami-kashi" data-tags="tsukumogami noleggio edo slice"><h3>Tsukumogami Kashimasu (We Rent Tsukumogami)</h3><div class="meta"><span class="jp">つくもがみ貸します</span> · Autore: Megumi Hatakenaka (romanzo) · Adatt. manga</div><p class="desc">Negozio di noleggio a Edo: oggetti animati (<em>tsukumogami</em>) che aiutano (e impicciano) i clienti.</p></article>
+      <article id="summerhikaru" data-tags="montagna entità horror"><h3>Hikaru ga Shinda Natsu (The Summer Hikaru Died)</h3><div class="meta"><span class="jp">光が死んだ夏</span> · Autore: Mokumokuren · 2021–</div><p class="desc">Qualcosa dalla montagna sostituisce un ragazzo: inquietudine rurale e taboo.</p></article>
+      <article id="ayakashi-hisen" data-tags="shojo ayakashi romance"><h3>Ayakashi Hisen</h3><div class="meta"><span class="jp">あやかし緋扇</span> · Autrice: Kyōko Kumagai · 2010–2013</div><p class="desc">Una ragazza e un ayakashi legati da una ventaglio scarlatto: misteri e sentimento.</p></article>
+    </div>
+  </section>
+
+  <!-- MACRO AREA 3: ONMYODO/ESORCISMI -->
+  <section id="onmyodo" class="anchor">
+    <h2>MACRO‑AREA 3 · Onmyōdō, esorcismi e sincretismi</h2>
+    <div class="grid">
+      <article id="xxxholic" data-tags="sincretismo bottega desideri seinen"><h3>xxxHOLiC <span class="badge">seinen</span></h3><div class="meta"><span class="jp">×××HOLiC</span> · Autrici: CLAMP · dal 2003</div><p class="desc">Desideri, prezzi e oggetti rituali: folklore moderno a tinte magiche.</p></article>
+      <article id="onmyoji" data-tags="heian seimei onmyodo seinen"><h3>Onmyōji (adatt. manga) <span class="badge">seinen</span></h3><div class="meta"><span class="jp">陰陽師</span> · Autrice: Reiko Okano (da Baku Yumemakura) · 1993–</div><p class="desc">Abe no Seimei nell’Heian: cosmologia, auspici e arte dell’onmyōdō.</p></article>
+      <article id="mononoke" data-tags="esorcismo conoscenza estetica seinen"><h3>Mononoke (manga) <span class="badge">seinen</span></h3><div class="meta"><span class="jp">モノノ怪</span> · Arte: Yaeko Ninagawa · 2007</div><p class="desc">Il venditore di medicine affronta <em>mononoke</em> solo dopo averne compreso forma‑verità‑ragione.</p></article>
+      <article id="kakuriyo" data-tags="locanda altromondo ayakashi josei"><h3>Kakuriyo: Bed & Breakfast for Spirits</h3><div class="meta"><span class="jp">かくりよの宿飯</span> · Storia: Midori Yūma · Manga: Waco Ioka · dal 2016</div><p class="desc">Una pensione nell’Altromondo per kami/ayakashi: cibo, ospitalità e debiti rituali.</p></article>
+      <article id="kannazuki" data-tags="miko orochi reincarnazione shonen"><h3>Kannazuki no Miko <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">神無月の巫女</span> · Autori: Kaishaku · 2004–2005</div><p class="desc">Due miko solare/lunare contro l’Orochi: ritualità shinto e reincarnazioni.</p></article>
+      <article id="blueex" data-tags="esorcisti sincretismo shonen"><h3>Blue Exorcist (Ao no Exorcist) <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">青の祓魔師</span> · Autrice: Kazue Kato · dal 2009</div><p class="desc">Gemelli esorcisti tra accademie, rituali ed entità; modern fantasy d’azione.</p></article>
+      <article id="twinstar" data-tags="onmyodo profezia shonen"><h3>Twin Star Exorcists (Sōsei no Onmyōji) <span class="badge">shōnen</span></h3><div class="meta"><span class="jp">双星の陰陽師</span> · Autore: Yoshiaki Sukeno · 2013–2024</div><p class="desc">Due giovani onmyōji “destinati” a generare l’esorcista supremo.</p></article>
+      <article id="tokyoravens" data-tags="onmyodo accademia shonen"><h3>Tokyo Ravens (manga)</h3><div class="meta"><span class="jp">東京レイヴンズ</span> · Disegni: Atsushi Suzumi · 2010–2017</div><p class="desc">Onmyōdō modernizzato, agenzia statale e studenti in lotta coi disastri spirituali.</p></article>
+      <article id="nube" data-tags="esorcismo scuola yokai shonen"><h3>Hell Teacher Nūbē</h3><div class="meta"><span class="jp">地獄先生ぬ〜べ〜</span> · Storia: Shō Makura · Disegni: Takeshi Okano · 1993–1999</div><p class="desc">Un maestro‑esorcista protegge gli alunni da yōkai e maledizioni (mano demoniaca!).</p></article>
+      <article id="garei" data-tags="agenzia esorcismi sesshoseki shonen"><h3>Ga‑Rei</h3><div class="meta"><span class="jp">喰霊</span> · Autore: Hajime Segawa · 2005–2010</div><p class="desc">Agenzia governativa, spiriti famelici e legami corrotti dal <em>sesshōseki</em>.</p></article>
+      <article id="jujutsu" data-tags="maledizioni esorcisti shonen"><h3>Jujutsu Kaisen</h3><div class="meta"><span class="jp">呪術廻戦</span> · Autore: Gege Akutami · 2018–2024</div><p class="desc">Maledizioni nate dalle emozioni negative e stregoni che le esorcizzano.</p></article>
+      <article id="kimetsu" data-tags="demoni nichirin taisho shonen"><h3>Demon Slayer: Kimetsu no Yaiba</h3><div class="meta"><span class="jp">鬼滅の刃</span> · Autrice: Koyoharu Gotōge · 2016–2020</div><p class="desc">Corpo Ammazzademoni nell’era Taishō: katane, respiri e folklore.</p></article>
+      <article id="mononogatari" data-tags="tsukumogami casa seinen"><h3>Malevolent Spirits: Mononogatari <span class="badge">seinen</span></h3><div class="meta"><span class="jp">もののがたり</span> · Autore: Onigunsō · 2014–2023</div><p class="desc">Tsukumogami e convivenza forzata per placare l’odio tra umani e oggetti animati.</p></article>
+      <article id="tsugumomo" data-tags="tsukumogami azione seinen"><h3>Tsugumomo <span class="badge">seinen</span></h3><div class="meta"><span class="jp">つぐもも</span> · Autore: Yoshikazu Hamada · 2007–</div><p class="desc">Una <em>obi</em> materna diventa tsukumogami: battaglie e tradizioni locali.</p></article>
+      <article id="omamori" data-tags="oni slayer ayakashi harem"><h3>Omamori Himari</h3><div class="meta"><span class="jp">おまもりひまり</span> · Autore: Milan Matra · 2006–2013</div><p class="desc">Un <em>oni‑slayer</em> eredita un destino e una guardia del corpo gatta‑yōkai.</p></article>
+      <article id="tactics" data-tags="tengu onmyodo meiji seinen"><h3>tactics</h3><div class="meta"><span class="jp">タクティクス</span> · Autrici: Sakura Kinoshita & Kazuko Higashiyama · 2000–</div><p class="desc">Folklorista ed exorcist con un tengu mangia‑oni al suo fianco (ambientazione Meiji).</p></article>
+      <article id="shonenonmyoji" data-tags="heian onmyodo manga"><h3>Shōnen Onmyōji (manga)</h3><div class="meta"><span class="jp">少年陰陽師</span> · Autrice manga: Hinako Seta · 2005–</div><p class="desc">Il nipote di Abe no Seimei si fa strada tra spiriti e arti onmyōdō (trasposizione da LN).</p></article>
+      <article id="ghosthunt" data-tags="indagini esorcismi shinto buddista shojo"><h3>Ghost Hunt (manga)</h3><div class="meta"><span class="jp">ゴーストハント</span> · Disegni: Shiho Inada · 1998–2010</div><p class="desc">Indagini paranormali con team misto (miko, monaco, medium, sacerdote): esorcismi sincretici.</p></article>
+      <article id="rinne" data-tags="shinigami reincarnazione commedia"><h3>Kyoukai no Rinne (Rin‑ne)</h3><div class="meta"><span class="jp">境界のRINNE</span> · Autrice: Rumiko Takahashi · 2009–2017</div><p class="desc">Uno shinigami squattrinato aiuta i fantasmi a reincarnarsi; umorismo e folklore spicciolo.</p></article>
+      <article id="mieruko" data-tags="fantasmi scuola shrine horror-comedy"><h3>Mieruko‑chan</h3><div class="meta"><span class="jp">見える子ちゃん</span> · Autore: Tomoki Izumi · dal 2018</div><p class="desc">Ragazza che “vede” gli spettri e finge di ignorarli; arc del santuario volpe memorabile.</p></article>
+      <article id="kemono" data-tags="occulto detective yokai shonen"><h3>Kemono Jihen</h3><div class="meta"><span class="jp">怪物事変</span> · Autore: Shō Aimoto · dal 2016</div><p class="desc">Agenzia per casi “kemono”: ghoul, tanuki, yuki‑onna e folklore urbano.</p></article>
+      <article id="dororo-hyakkimaru" data-tags="remake dororo demoni azione"><h3>The Legend of Dororo and Hyakkimaru</h3><div class="meta"><span class="jp">どろろと百鬼丸伝</span> · Autore: Satoshi Shiki · dal 2018</div><p class="desc">Remake moderno del classico di Tezuka: caccia ai demoni per riottenere il corpo.</p></article>
+      <article id="bakemono" data-tags="oddities sincretismi urbanfantasy"><h3>Bakemonogatari (manga)</h3><div class="meta"><span class="jp">化物語</span> · Illustrazioni: Oh! great (da Nisio Isin) · 2018–2023</div><p class="desc">“Oddities” e divinità locali in chiave urban‑fantasy; esorcismi non convenzionali.</p></article>
+      <article id="kijin-gentosho" data-tags="onmyodo tempo viaggi folklore"><h3>Kijin Gentōshō</h3><div class="meta"><span class="jp">鬼人幻燈抄</span> · Storia: Motoo Nakanishi · Adatt. manga</div><p class="desc">Un sacerdote e una yōkai attraversano epoche del Giappone tra riti, onmyōji e destini incrociati.</p></article>
+      <article id="otogizoshi" data-tags="heian seimei storica"><h3>Otogi Zōshi (manga)</h3><div class="meta"><span class="jp">お伽草子</span> · Adatt. storico · 2000s</div><p class="desc">Rinarrazione dell’Heian con Abe no Seimei, demoni e talismani.</p></article>
+      <article id="ayashiya" data-tags="famiglia esorcisti contratti"><h3>Ayashiya</h3><div class="meta"><span class="jp">アヤシヤ</span> · Autore: Shū Katayama · 2014–</div><p class="desc">Una casata ingaggia patti con ayakashi per risolvere casi e maledizioni.</p></article>
+      <article id="yakumo" data-tags="indagini medium spiriti"><h3>Shinrei Tantei Yakumo</h3><div class="meta"><span class="jp">心霊探偵 八雲</span> · Storia: Manabu Kaminaga · Adatt. manga</div><p class="desc">Studente che vede spiriti indaga su morti inquieti; riti e suggestioni giapponesi.</p></article>
+    </div>
+  </section>
+
+  <!-- MACRO AREA 4: ONESHOT/ANTOLOGIE -->
+  <section id="oneshot" class="anchor">
+    <h2>MACRO‑AREA 4 · One‑shot e antologie affini</h2>
+    <div class="grid">
+      <article id="hotarubi" data-tags="oneshot spirito foresta romance"><h3>Hotarubi no Mori e <span class="badge">one‑shot</span></h3><div class="meta"><span class="jp">蛍火の杜へ</span> · Autrice: Yuki Midorikawa · 2002</div><p class="desc">Ragazza e spirito della foresta: tabù e impermanenza in una fiaba luminosa.</p></article>
+      <article id="fuan" data-tags="antologia leggende orrore"><h3>Fuan no Tane (Seeds of Anxiety)</h3><div class="meta"><span class="jp">不安の種</span> · Autore: Masaaki Nakayama · 2004–</div><p class="desc">Microracconti di orrore e leggende urbane dal sapore giapponese.</p></article>
+      <article id="mizuki-enciclopedia" data-tags="enciclopedia yokai saggistica"><h3>Shigeru Mizuki – Enciclopedia degli Yōkai (vari)</h3><div class="meta"><span class="jp">水木しげるの妖怪事典</span> · Autore: Shigeru Mizuki</div><p class="desc">Voci illustrate su centinaia di yōkai: il grande repertorio pop di Mizuki.</p></article>
+    </div>
+  </section>
+
+  <p class="foot">Totale: <strong>100</strong> schede. Ricerca lato‑client, struttura responsive per WebView. Nessuna immagine.
+  </p>
+</main>
+
+<script>
+  (function(){
+    const q = document.getElementById('q');
+    const clearBtn = document.getElementById('clearBtn');
+    const counter = document.getElementById('counter');
+    const arts = Array.from(document.querySelectorAll('article'));
+    const normalize = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    const idx = new Map();
+    arts.forEach(a => idx.set(a, normalize(a.textContent + ' ' + (a.dataset.tags||''))));
+    function applyFilter(){
+      const term = normalize(q.value.trim());
+      let vis = 0;
+      arts.forEach(a=>{
+        if(!term || idx.get(a).includes(term)){ a.style.display='block'; vis++; }
+        else a.style.display='none';
+      });
+      counter.textContent = term ? `${vis} risultato${vis!==1?'i':''}` : `Totale: ${arts.length} titoli`;
+    }
+    q.addEventListener('input', applyFilter);
+    clearBtn.addEventListener('click', ()=>{ q.value=''; applyFilter(); q.focus(); });
+    applyFilter();
+  })();
+</script>
+</body>
+</html>
