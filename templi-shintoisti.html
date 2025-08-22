@@ -1,17 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Templi Shintoisti | Shinto Italia</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Templi Shintoisti | Shinto Italia (ALL • fixed)</title>
 
-  <!-- Leaflet CSS (HTTPS + SRI) -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
+  <!-- Leaflet CSS + JS (CDN) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <!-- Leaflet.markercluster (CDN) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
   <style>
     :root { --accent:#d33; --bg:#fff; --text:#111; }
@@ -19,38 +20,55 @@
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
     header{padding:.75rem 1rem;border-bottom:1px solid #eee}
     header h1{font-size:1.1rem;margin:.2rem 0}
+    .note{font-size:.9rem;color:#555}
+
     #container{display:flex;flex-direction:column;height:calc(100% - 56px)}
     #map{flex:1 1 auto;min-height:60vh}
-    #list{max-height:32vh;overflow:auto;border-top:1px solid #eee}
+    #list{max-height:32vh;overflow:auto;border-top:1px solid #eee;background:#fff}
+
+    /* UX migliorata: due azioni (focus mappa + apri/condividi) */
     #list ul{list-style:none;margin:0;padding:.5rem}
-    #list li{padding:.4rem .2rem;border-bottom:1px dashed #eee;cursor:pointer}
+    #list li{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.55rem .2rem;border-bottom:1px dashed #eee}
+    #list li .name{flex:1;cursor:pointer}
+    #list li .btn{flex:0 0 auto;display:inline-block;padding:.32rem .55rem;border-radius:6px;background:#f3f6fc;color:#0b57d0;text-decoration:none;font-size:.9rem;border:1px solid #e1e8ff}
+    #list li .btn:hover{background:#e9f0ff}
     #list li:hover{background:#fafafa}
-    .popup h3{margin:.2rem 0 .4rem;font-size:1.05rem}
-    .popup img{display:block;max-width:220px;max-height:150px;width:auto;height:auto;border-radius:6px;margin:.25rem 0}
-    .popup a{color:var(--accent);text-decoration:none}
-    .popup a:hover{text-decoration:underline}
-    .note{font-size:.85rem;color:#555}
+
+    /* Filtro lista */
+    #filterBar{display:flex;gap:.5rem;align-items:center;padding:.5rem;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:5}
+    #filterBar input[type="search"]{flex:1;padding:.45rem .6rem;border:1px solid #ccc;border-radius:6px;font-size:1rem}
+    #filterBar button{border:1px solid #ccc;background:#f8f8f8;border-radius:6px;padding:.4rem .6rem;cursor:pointer}
+    #filterBar button:hover{background:#f0f0f0}
+
+    /* Marker torii (divIcon) */
+    .torii-marker{background:transparent;border:none;}
+    .torii-marker .glyph{font-size:22px;line-height:28px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35));}
+
+    /* Cluster tuning (rosso tenue) */
+    .marker-cluster-small{background-color:rgba(221,68,68,.6);} 
+    .marker-cluster-small div{background-color:rgba(221,68,68,.8);} 
   </style>
 </head>
 <body>
   <header>
     <h1>Templi Shintoisti</h1>
-    <div class="note">Tocca un elemento in lista o un marker sulla mappa. I link aprono <em>nella stessa pagina</em> (niente finestre nuove).</div>
+    <div class="note">
+      Tocca un nome per centrare la mappa, oppure usa i pulsanti per aprire/condividere la posizione su Google Maps.
+      I link aprono <em>nella stessa pagina</em> (compatibile con WebView).
+    </div>
   </header>
 
   <div id="container">
     <div id="map" role="region" aria-label="Mappa templi shintoisti"></div>
-    <nav id="list" aria-label="Elenco templi">
-      <ul id="templeList"></ul>
-    </nav>
-  </div>
 
-  <!-- Leaflet JS (HTTPS + SRI) -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
+    <div id="list" aria-label="Elenco templi">
+      <div id="filterBar">
+        <input id="searchInput" type="search" placeholder="Cerca tempio o città…" aria-label="Cerca" />
+        <button id="clearSearch" type="button" title="Pulisci">✕</button>
+      </div>
+      <ul id="templeList"></ul>
+    </div>
+  </div>
 
   <script>
     // ===========================
@@ -79,16 +97,28 @@
       { name:"Oarai Isosaki Jinja – Ibaraki",      lat:36.3183, lng:140.5833, image:"" },
     ];
 
+    // Rileva piattaforma (per aprire app Google Maps su Android)
+    const IS_ANDROID = /Android/i.test(navigator.userAgent);
+
     // ===========================
     // 2) Inizializza mappa Leaflet
     // ===========================
     const map = L.map('map', { scrollWheelZoom: true });
 
-    // Tile layer OSM Standard (HTTPS).
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://openstreetmap.org/">OpenStreetMap</a> contributors'
     }).addTo(map);
+
+    // Icona torii (emoji) e cluster group
+    const toriiIcon = L.divIcon({
+      className: 'torii-marker',
+      html: '<span class="glyph">⛩️</span>',
+      iconSize: [28,28],
+      iconAnchor: [14,28],
+      popupAnchor: [0,-26]
+    });
+    const cluster = L.markerClusterGroup({ showCoverageOnHover:false, maxClusterRadius:48 });
 
     const markers = [];
     const bounds = [];
@@ -97,46 +127,107 @@
     // 3) Markers + popup
     // ===========================
     function popupContent(t) {
-      const gmaps = `https://www.google.com/maps/search/?api=1&query=${t.lat},${t.lng}`;
+      const gmaps = IS_ANDROID
+        ? `geo:${t.lat},${t.lng}?q=${encodeURIComponent(t.name)}`
+        : `https://www.google.com/maps/search/?api=1&query=${t.lat},${t.lng}`;
       const img   = (t.image && t.image.startsWith('https://'))
-        ? `<img src="${t.image}" alt="${t.name}" loading="lazy"
-               onerror="this.style.display='none'">`
+        ? `<img src="${t.image}" alt="${t.name}" loading="lazy" onerror="this.style.display='none'">`
         : '';
       return `
         <div class="popup">
           <h3>${t.name}</h3>
           ${img}
-          <p class="note">Lat: ${t.lat.toFixed(4)} &middot; Lng: ${t.lng.toFixed(4)}</p>
-          <p><a href="${gmaps}">Apri su Google Maps</a></p>
+          <p class="note">Lat: ${t.lat.toFixed(4)} · Lng: ${t.lng.toFixed(4)}</p>
+          <p>
+            <a href="${gmaps}" target="_self" rel="noopener">Apri su Google Maps</a>
+            ·
+            <a href="#" onclick="shareFromPopup(${t.lat},${t.lng}, '${t.name.replace(/'/g, "\\'")}'); return false;">Condividi</a>
+          </p>
         </div>
       `;
     }
 
     TEMPLES.forEach((t, i) => {
-      const m = L.marker([t.lat, t.lng]).addTo(map).bindPopup(popupContent(t));
+      const m = L.marker([t.lat, t.lng], { icon: toriiIcon }).bindPopup(popupContent(t));
+      cluster.addLayer(m);
       markers.push(m);
       bounds.push([t.lat, t.lng]);
     });
 
+    map.addLayer(cluster);
     if (bounds.length) map.fitBounds(bounds, { padding: [24, 24] });
 
     // ===========================
-    // 4) Lista cliccabile
+    // 4) Lista con due azioni
     // ===========================
     const ul = document.getElementById('templeList');
-    TEMPLES.forEach((t, i) => {
-      const li = document.createElement('li');
-      li.textContent = t.name;
-      li.title = `Vai a ${t.name}`;
-      li.addEventListener('click', () => {
-        map.flyTo([t.lat, t.lng], 14, { duration: .6 });
-        markers[i].openPopup();
+    function rebuildList() {
+      ul.innerHTML = '';
+      TEMPLES.forEach((t, i) => {
+        const li = document.createElement('li');
+
+        const name = document.createElement('span');
+        name.className = 'name';
+        name.textContent = t.name;
+        name.title = `Vai a ${t.name} sulla mappa`;
+        name.addEventListener('click', () => {
+          map.flyTo([t.lat, t.lng], 14, { duration: .6 });
+          markers[i].openPopup();
+        });
+
+        const href = IS_ANDROID
+          ? `geo:${t.lat},${t.lng}?q=${encodeURIComponent(t.name)}`
+          : `https://www.google.com/maps/search/?api=1&query=${t.lat},${t.lng}`;
+        const open = document.createElement('a');
+        open.href = href; open.target = '_self'; open.rel='noopener'; open.className='btn';
+        open.textContent = 'Apri in Maps';
+
+        const share = document.createElement('button');
+        share.type='button'; share.className='btn'; share.textContent='Condividi';
+        share.addEventListener('click', ()=> shareTemple(t));
+
+        li.appendChild(name);
+        li.appendChild(open);
+        li.appendChild(share);
+        ul.appendChild(li);
       });
-      ul.appendChild(li);
-    });
+    }
+    rebuildList();
 
     // ===========================
-    // 5) Evita target="_blank" (per compatibilità con WebView)
+    // 4bis) Condivisione (Web Share API + fallback)
+    // ===========================
+    async function shareTemple(t){
+      const url = IS_ANDROID
+        ? `geo:${t.lat},${t.lng}?q=${encodeURIComponent(t.name)}`
+        : `https://www.google.com/maps/search/?api=1&query=${t.lat},${t.lng}`;
+      const text = `${t.name} – Posizione su Google Maps`;
+      if (navigator.share){
+        try { await navigator.share({ title: t.name, text, url }); return; } catch(e){}
+      }
+      try { await navigator.clipboard.writeText(url); alert('Link copiato negli appunti'); }
+      catch(e){ prompt('Copia il link:', url); }
+    }
+    function shareFromPopup(lat,lng,name){ shareTemple({lat,lng,name}); }
+
+    // ===========================
+    // 4ter) Filtro ricerca
+    // ===========================
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearSearch');
+    function filterList(){
+      const q = (searchInput && searchInput.value || '').toLowerCase();
+      Array.from(ul.children).forEach(li => {
+        const n = li.querySelector('.name');
+        const show = !q || (n && n.textContent.toLowerCase().includes(q));
+        li.style.display = show ? '' : 'none';
+      });
+    }
+    searchInput && searchInput.addEventListener('input', filterList);
+    clearBtn && (clearBtn.onclick = ()=>{ searchInput.value=''; filterList(); searchInput.focus(); });
+
+    // ===========================
+    // 5) Evita target="_blank" (compatibilità WebView)
     // ===========================
     window.addEventListener('load', () => {
       document.querySelectorAll('a[target="_blank"]').forEach(a => a.target = '_self');
