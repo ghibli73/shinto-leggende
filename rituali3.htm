@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Rituali Shinto — Shinto Italia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Purificazione (Misogi/Harae), Offerte (Shinsen), Norito, Matsuri e Riti di vita. Immagini incorniciate, audio in streaming (Internet Archive) e calendario interattivo dei festival.">
+  <meta name="theme-color" content="#e60033">
+
+  <!-- Content-Security-Policy: limita le origini a quanto serve -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' data: https://raw.githubusercontent.com;
+                 media-src 'self' https://archive.org https://*.archive.org;
+                 frame-src 'self' https://archive.org https://*.archive.org;
+                 style-src 'self' 'unsafe-inline';
+                 script-src 'self' 'unsafe-inline';
+                 font-src 'self';
+                 connect-src 'self'">
+
+  <style>
+    /* ======= Tema & base ======= */
+    :root{
+      --bg:#ffffff; --fg:#191a1d; --muted:#6f7280; --brand:#e60033; --chip:#f3f4f7;
+      --card:#fafafa; --border:#e6e6ee; --link:#0b57d0; --ok:#1b9e77; --warn:#b78100;
+      --shadow: 0 10px 28px rgba(0,0,0,.085);
+      --ring: 0 0 0 3px rgba(230,0,51,.15);
+      --grad: linear-gradient(120deg,#ffe3ea 0,#fff 50%,#fff 100%);
+    }
+    [data-theme="dark"]{
+      --bg:#0e0f13; --fg:#eaeaf0; --muted:#a7a9b5; --card:#16171e; --chip:#1d1f27;
+      --border:#2a2f3a; --link:#87b4ff; --shadow: 0 16px 40px rgba(0,0,0,.5);
+      --grad: linear-gradient(120deg,#2a1720 0,#0e0f13 60%,#0e0f13 100%);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans";}
+    a{color:var(--link)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* ======= Hero ======= */
+    .hero-wrap{background:var(--grad); border-bottom:1px solid var(--border)}
+    .hero-img{display:block; width:100%; height:280px; object-fit:cover; object-position:center 70%}
+    .hero{max-width:1180px; margin:0 auto; padding:10px 16px 12px; display:flex; align-items:flex-end; gap:12px}
+    .hero h1{margin:.25rem 0 0; font-size:1.8rem}
+    .chips{display:flex; gap:6px; flex-wrap:wrap}
+    .chip{font-size:.76rem; padding:.2rem .55rem; border-radius:999px; border:1px solid var(--border); background:var(--chip); color:var(--muted)}
+    nav.breadcrumb{max-width:1180px; margin:6px auto 0; padding:0 16px; color:var(--muted); font-size:.94rem}
+    nav.breadcrumb a{text-decoration:none; color:inherit}
+
+    /* ======= Sezioni ======= */
+    main{max-width:1180px; margin:16px auto 70px; padding:0 16px}
+    .intro{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:12px 14px; margin-bottom:16px; box-shadow:var(--shadow)}
+    .btn-row{display:flex; gap:8px; flex-wrap:wrap}
+    .btn{appearance:none; border:1px solid var(--border); background:var(--bg); color:var(--fg); padding:.48rem .8rem; border-radius:10px; cursor:pointer}
+    .btn:hover{box-shadow:var(--ring)}
+    .btn.primary{background:var(--brand); color:#fff; border-color:var(--brand)}
+    .note{font-size:.92rem; color:var(--muted)}
+
+    .grid{display:grid; gap:16px}
+    @media (min-width:940px){ .grid{grid-template-columns:1fr 1fr} }
+
+    details.card{background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:var(--shadow)}
+    details.card > summary{list-style:none; padding:14px 16px; cursor:pointer; font-weight:800; display:flex; align-items:center; gap:10px}
+    details.card[open] > summary{ border-bottom:1px solid var(--border) }
+    details.card summary::marker{display:none}
+
+    /* ======= Immagini in riquadro ======= */
+    .thumb{padding:12px 16px 0}
+    .frame{
+      border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--bg); box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .frame:hover{transform:translateY(-2px); box-shadow:0 12px 36px rgba(0,0,0,.12)}
+    .frame img{display:block; width:100%; height:180px; object-fit:cover; object-position:center}
+    .frame figcaption{padding:8px 10px; font-size:.9rem; color:var(--muted)}
+
+    .content{padding:12px 16px 16px}
+    .content h3{margin:.2rem 0 .4rem}
+    .content p{margin:.4rem 0 1rem}
+    .content ul{margin:.25rem 0 1rem 1.1rem}
+
+    iframe{width:100%; border:0; border-radius:12px; height:120px; background:var(--card)}
+
+    .sources, .legal{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-top:18px; box-shadow:var(--shadow)}
+
+    /* ======= Calendario ======= */
+    .cal{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px; margin-top:18px; box-shadow:var(--shadow)}
+    .cal .legend{color:var(--muted); font-size:.95rem}
+    .cal-controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:12px 0}
+    .cal-controls input[type="search"], .cal-controls select{
+      padding:.48rem .6rem; border:1px solid var(--border); border-radius:10px; background:var(--bg); color:var(--fg);
+    }
+    .count{color:var(--muted); font-size:.92rem}
+    .cal-table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:12px; border:1px solid var(--border)}
+    .cal-table th, .cal-table td{padding:.6rem .7rem; border-bottom:1px solid var(--border)}
+    .cal-table thead th{background:var(--chip); text-align:left}
+    .cal-table tbody tr{background:var(--bg); transition:background .15s ease}
+    .cal-table tbody tr:hover{background:color-mix(in srgb, var(--brand) 6%, transparent)}
+    .badge{display:inline-block; font-size:.75rem; padding:.12rem .5rem; border-radius:6px; background:color-mix(in srgb, var(--brand) 13%, transparent); color:var(--fg)}
+    .tooltip{position:relative; cursor:help}
+    .tooltip .tiptext{
+      visibility:hidden; opacity:0; transition:opacity .15s ease;
+      position:absolute; z-index:10; left:50%; transform:translateX(-50%);
+      bottom:calc(100% + 8px); background:var(--fg); color:var(--bg); padding:.5rem .65rem;
+      border-radius:10px; width:min(480px, 86vw); text-wrap:pretty; box-shadow:var(--shadow)
+    }
+    .tooltip:hover .tiptext, .tooltip:focus-within .tiptext{visibility:visible; opacity:1}
+
+    .cal-panel{margin-top:12px; border:1px solid var(--border); border-radius:12px; padding:12px; background:var(--bg)}
+    .panel-title{margin:.2rem 0 .4rem}
+    .panel-grid{display:grid; gap:8px}
+    @media (min-width:640px){ .panel-grid{grid-template-columns:1fr 1fr} }
+
+    /* Micro-animazioni decorative Sakura */
+    .sakura{position:absolute; inset:0; pointer-events:none; overflow:hidden}
+    .petal{position:absolute; width:10px; height:10px; background:radial-gradient(circle at 30% 30%, #ffd1dc 0, #ff8aaa 60%, transparent 65%);
+      border-radius:50% 50% 50% 50%; opacity:.35; animation:fall 12s linear infinite; filter:blur(.2px)}
+    .petal:nth-child(3n){animation-duration:15s; opacity:.25}
+    .petal:nth-child(5n){animation-duration:18s; opacity:.2}
+    @keyframes fall{
+      from{transform:translate3d(var(--x,10vw), -10vh, 0) rotate(0deg)}
+      to{transform:translate3d(calc(var(--x,10vw) + 10vw), 110vh, 0) rotate(360deg)}
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO -->
+  <div class="hero-wrap">
+    https://raw.githubusercontent.com/ghibli73/shinto-leggende/refs/heads/main/header.jpg
+    <div class="sakura" aria-hidden="true">
+      <!-- qualche petalo flottante -->
+      <div class="petal" style="--x:5vw"></div><div class="petal" style="--x:25vw"></div><div class="petal" style="--x:45vw"></div>
+      <div class="petal" style="--x:65vw"></div><div class="petal" style="--x:85vw"></div><div class="petal" style="--x:15vw"></div>
+    </div>
+  </div>
+
+  <header>
+    <div class="hero" role="banner">
+      <!-- Torii minimale -->
+      <svg viewBox="0 0 64 64" aria-hidden="true" width="44" height="44">
+        <rect width="64" height="64" rx="12" fill="#e60033" />
+        <g fill="#fff" transform="translate(9,11)">
+          <rect x="0" y="6" width="46" height="4" rx="2"/>
+          <rect x="4" y="12" width="38" height="4" rx="2"/>
+          <rect x="8" y="16" width="6" height="26" rx="2"/>
+          <rect x="32" y="16" width="6" height="26" rx="2"/>
+        </g>
+      </svg>
+      <div>
+        <h1>Rituali Shinto</h1>
+        <div class="chips" aria-hidden="true">
+          <span class="chip">Purificazione</span><span class="chip">Offerte</span><span class="chip">Norito</span><span class="chip">Matsuri</span><span class="chip">Riti di vita</span>
+        </div>
+      </div>
+    </div>
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="index.htm" rel="noopener">Home</a> › <span style="color:var(--muted)">Rituali</span>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="intro">
+      <p><strong>Come usare questa pagina</strong> — Apri le schede per leggere spiegazioni approfondite e ascoltare in <em>streaming</em> (embed <code>archive.org</code>) estratti leciti di norito/kagura/musiche rituali. Nessun autoplay (serve gesto dell’utente). </p>
+      <div class="btn-row">
+        <button class="btn" id="toggleTheme" type="button" aria-pressed="false">Tema chiaro/scuro</button>
+        <span class="note">La preferenza è salvata su questo dispositivo.</span>
+      </div>
+    </section>
+
+    <!-- SEZIONI APPROFONDITE -->
+    <section class="grid" aria-label="Rituali principali">
+
+      <!-- Purificazione -->
+      <details class="card" id="purificazione" open>
+        <summary>Purificazione — <span class="chip">Misogi / Harae</span></summary>
+        <div class="thumb">
+          <figure class="frame">
+            https://raw.githubusercontent.com/ghibli73/shinto-leggende/refs/heads/main/misogi.jpg
+            <figcaption>Misogi (abluzioni) e Harae (riti/recitazioni di purificazione)</figcaption>
+          </figure>
+        </div>
+        <div class="content">
+          <h3>Significato e pratiche</h3>
+          <p><strong>Misogi</strong> è la purificazione con l’acqua (cascate, fiumi, mare) per rimuovere <em>tsumi</em> e <em>kegare</em>. <strong>Harae</strong> comprende riti e formule (es. <em>harae no kotoba</em>) eseguiti prima dell’accesso al divino (<em>shinzen</em>). Tra i grandi riti stagionali: l’<strong>Ōharae</strong>, e la forma popolare di metà anno <strong>Nagoshi no harae</strong> (30 giugno) con passaggio nel <em>chinowa</em>.</p>
+          <p class="note">Approfondimenti: voci dell’<em>Encyclopedia of Shinto</em> su Harae, Nagoshi no harae e Chinowa.</p>
+        </div>
+      </details>
+
+      <!-- Offerte -->
+      <details class="card" id="offerte">
+        <summary>Offerte — <span class="chip">Shinsen</span></summary>
+        <div class="thumb">
+          <figure class="frame">
+            https://raw.githubusercontent.com/ghibli73/shinto-leggende/refs/heads/main/shinsen.jpg
+            <figcaption>Shinsen: offerte ai <em>kami</em> e comunione (<em>naorai</em>)</figcaption>
+          </figure>
+        </div>
+        <div class="content">
+          <h3>Offerte e comunione</h3>
+          <p><strong>Shinsen</strong> indica le offerte alimentari ai <em>kami</em> (riso, <em>sake/omiki</em>, sale, acqua, alghe, frutta, pesci e talvolta carni). La preparazione è rigorosa e spesso si conclude con il <em>naorai</em>, condividendo simbolicamente con la comunità. Classificazioni tradizionali: <em>seisen</em> (crudo), <em>jukusen</em> (cotto), <em>sosen</em> (vegetariano).</p>
+        </div>
+      </details>
+
+      <!-- Norito -->
+      <details class="card" id="norito">
+        <summary>Preghiere — <span class="chip">Norito</span></summary>
+        <div class="thumb">
+          <figure class="frame">
+            https://raw.githubusercontent.com/ghibli73/shinto-leggende/refs/heads/main/norito.jpg
+            <figcaption>Norito: formule liturgiche (es. <em>harae no kotoba</em>, <em>yogoto</em>)</figcaption>
+          </figure>
+        </div>
+        <div class="content">
+          <h3>Testi liturgici e ascolti</h3>
+          <p>I <strong>norito</strong> sono recitati nelle cerimonie; il corpus classico è documentato nell’<em>Engishiki</em> (X sec.). Qui puoi ascoltare selezioni in streaming (niente file locali):</p>
+          https://archive.org/embed/japaneseshintoritualmusic
+          <p class="note">Raccolta con norito (es. recitazioni a Fushimi Inari), kagura e brani rituali (1990).</p>
+        </div>
+      </details>
+
+      <!-- Matsuri -->
+      <details class="card" id="matsuri">
+        <summary>Festival — <span class="chip">Matsuri</span></summary>
+        <div class="thumb">
+          <figure class="frame">
+            https://raw.githubusercontent.com/ghibli73/shinto-leggende/refs/heads/main/matsuri.jpg
+            <figcaption>Matsuri: riti, processioni, <em>kagura</em>, <em>gagaku</em>, <em>mikoshi</em></figcaption>
+          </figure>
+        </div>
+        <div class="content">
+          <h3>Riti, processioni e musica</h3>
+          <p>I <strong>matsuri</strong> rendono visibile la relazione tra comunità e <em>kami</em>: purificazione, presentazione degli <em>shinsen</em>, recitazione di <em>norito</em>, danze <em>kagura</em>, musica <em>gagaku</em>, processioni con <em>mikoshi</em>. Alternano momenti solenni e festivi.</p>
+          https://archive.org/embed/lp_japan-v-shint-music_various
+          <p class="note">Raccolta storica (1966) con <em>norito</em>, <em>kagura</em> e brani cerimoniali.</p>
+        </div>
+      </details>
+
+      <!-- Riti di vita -->
+      <details class="card" id="riti-di-vita">
+        <summary>Riti di vita — <span class="chip">Miyamairi · Shichi‑Go‑San · Shinzen‑kekkon</span></summary>
+        <div class="thumb">
+          <figure class="frame">
+            https://raw.githubusercontent.com/ghibli73/shinto-leggende/refs/heads/main/riti.jpg
+            <figcaption>Passaggi biografici in prospettiva shinto</figcaption>
+          </figure>
+        </div>
+        <div class="content">
+          <h3>Passaggi e simboli</h3>
+          <ul>
+            <li><strong>Miyamairi</strong>: visita con il neonato per ringraziare e chiedere protezione.</li>
+            <li><strong>Shichi‑Go‑San</strong> (15 novembre): pellegrinaggio di bambini con abiti tradizionali.</li>
+            <li><strong>Shinzen‑kekkon</strong>: nozze davanti al <em>kami</em> officiate da sacerdoti (forma moderna strutturata in epoca Meiji).</li>
+          </ul>
+        </div>
+      </details>
+
+    </section>
+
+    <!-- CALENDARIO INTERATTIVO (20 festival) -->
+    <section class="cal" aria-labelledby="calTitle">
+      <h2 id="calTitle">Calendario interattivo dei principali festival</h2>
+      <p class="legend">Cerca per nome/luogo e filtra per mese. Clicca una riga per aprire la scheda di dettaglio. Le date sono **indicative** e possono variare ogni anno.</p>
+
+      <div class="cal-controls" role="region" aria-label="Filtri calendario">
+        <input id="searchFest" type="search" placeholder="Cerca festival o luogo…" aria-label="Cerca">
+        <select id="monthFilter" aria-label="Filtra per mese">
+          <option value="0">Tutti i mesi</option>
+          <option value="1">Gennaio</option><option value="2">Febbraio</option><option value="3">Marzo</option>
+          <option value="4">Aprile</option><option value="5">Maggio</option><option value="6">Giugno</option>
+          <option value="7">Luglio</option><option value="8">Agosto</option><option value="9">Settembre</option>
+          <option value="10">Ottobre</option><option value="11">Novembre</option><option value="12">Dicembre</option>
+        </select>
+        <button class="btn" id="resetCal" type="button">Reset</button>
+        <span class="count" id="countFest"></span>
+      </div>
+
+      <table class="cal-table" id="festTable" aria-describedby="calTitle">
+        <thead>
+          <tr>
+            <th>Festival</th>
+            <th>Luogo</th>
+            <th>Mese</th>
+            <th>Date</th>
+            <th>Info</th>
+          </tr>
+        </thead>
+        <tbody><!-- render via JS --></tbody>
+      </table>
+
+      <div class="cal-panel" id="festPanel" hidden aria-live="polite"></div>
+
+      <p class="note" style="margin-top:10px">
+        Riferimenti utili: portali turistici (JNTO, guide cittadine), siti dei santuari e repertori accademici.
+      </p>
+    </section>
+
+    <!-- FONTI & LICENZE -->
+    <section class="sources" aria-labelledby="fonti">
+      <h2 id="fonti">Fonti e approfondimenti</h2>
+      <ul>
+        <li>Purificazione e riti: Harae, Nagoshi no harae, Chinowa, introduzione ai Riti/Festival (Encyclopedia of Shinto – Kokugakuin).</li>
+        <li>Audio in streaming: <em>Japanese Shinto Ritual Music</em> (1990) e <em>Japan V – Shintō Music</em> (1966), Internet Archive.</li>
+      </ul>
+      <p class="note">Questa pagina non raccoglie dati personali, non imposta cookie e non usa SDK/analytics di terze parti. L’embed di Internet Archive effettua solo streaming dal dominio <code>archive.org</code>.</p>
+    </section>
+
+    <section class="legal" aria-labelledby="licenze">
+      <h2 id="licenze">Licenze e note</h2>
+      <p><strong>Immagini</strong>: nella tua repo GitHub (<code>refs/heads/main/*.jpg</code>), visualizzate in riquadri e ridotte nel layout.<br>
+         <strong>Audio</strong>: streaming da Internet Archive (nessun file locale; niente autoplay).</p>
+      <div class="btn-row">
+        <a class="btn primary" href="#main">↑ Torna su</a>
+      </div>
+      <p class="note" aria-hidden="true">Ultimo aggiornamento: 03/09/2025</p>
+    </section>
+  </main>
+
+  <script>
+    // ===== Tema chiaro/scuro =====
+    (function(){
+      const LS_KEY='rituali-theme';
+      const btn=document.getElementById('toggleTheme');
+      const apply=m=>{document.documentElement.setAttribute('data-theme',m);btn.setAttribute('aria-pressed',String(m==='dark'))}
+      const saved=localStorage.getItem(LS_KEY); if(saved) apply(saved);
+      btn.addEventListener('click',()=>{const m=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'; localStorage.setItem(LS_KEY,m); apply(m)});
+    })();
+
+    // ===== Dati calendario (20 festival) =====
+    const FESTIVALS = [
+      // 1 Gion
+      {name:"Gion Matsuri", city:"Kyōto — Yasaka Jinja", month:7, dates:"1–31 luglio (Yamahoko: 17 & 24)", info:"Celebre mese di riti e processioni; uno dei tre grandi festival del Giappone.", ref:"https://www.yasaka-jinja.or.jp/en/gion_fes/"},
+      // 2 Aoi
+      {name:"Aoi Matsuri", city:"Kyōto — Kamigamo & Shimogamo", month:5, dates:"15 maggio (processione)", info:"Antichissimo festival dei due santuari Kamo; corteo in abiti di corte Heian.", ref:"https://kyoto.travel/en/travel-inspiration/aoi-matsuri-festival/"},
+      // 3 Sanja
+      {name:"Sanja Matsuri", city:"Tōkyō — Asakusa Jinja", month:5, dates:"3º weekend di maggio", info:"Mikoshi monumentali per Asakusa; tra i tre grandi festival di Tōkyō.", ref:"https://e-asakusa.jp/en/culture-experience/9962"},
+      // 4 Kanda
+      {name:"Kanda Matsuri", city:"Tōkyō — Kanda Myōjin", month:5, dates:"metà maggio (anni dispari)", info:"Parate nel centro di Tōkyō; alterna con il Sannō Matsuri.", ref:"https://www.japan-guide.com/e/e3073.html"},
+      // 5 Sannō
+      {name:"Sannō Matsuri", city:"Tōkyō — Hie Jinja", month:6, dates:"giugno (biennale)", info:"Prestigioso festival di Hie Jinja; corteo Jinkōsai attraverso il centro.", ref:"https://www.gotokyo.org/en/spot/ev048/index.html"},
+      // 6 Tenjin
+      {name:"Tenjin Matsuri", city:"Ōsaka — Tenmangū", month:7, dates:"24–25 luglio", info:"Processione terrestre e fluviale con fuochi; tra i tre grandi festival del Giappone.", ref:"https://www.japan-guide.com/e/e4023.html"},
+      // 7 Awa Odori
+      {name:"Awa Odori", city:"Tokushima", month:8, dates:"12–15 agosto", info:"Il più famoso Bon Odori; migliaia di danzatori in gruppi ‘ren’.", ref:"https://www.japan-guide.com/e/e7802.html"},
+      // 8 Nebuta
+      {name:"Nebuta Matsuri", city:"Aomori", month:8, dates:"2–7 agosto", info:"Gigantesche lanterne (nebuta) sfilano con haneto, tamburi e flauti.", ref:"https://www.nebuta.jp/"},
+      // 9 Kantō
+      {name:"Kantō Matsuri", city:"Akita", month:8, dates:"3–6 agosto", info:"Acrobazie con pali di lanterne fino a 12 m e 50 kg.", ref:"https://www.kantou.gr.jp/"},
+      // 10 Sendai Tanabata
+      {name:"Sendai Tanabata", city:"Sendai", month:8, dates:"6–8 agosto", info:"Celebre Tanabata con migliaia di streamers in carta washi.", ref:"https://www.sendaitanabata.com/"},
+      // 11 Takayama Spring
+      {name:"Takayama Spring (Sannō)", city:"Takayama — Hie Jinja", month:4, dates:"14–15 aprile", info:"Carri yatai, marionette karakuri e parate; tra i tre festival più belli.", ref:"https://www.japan.travel/en/spot/151/"},
+      // 12 Takayama Autumn
+      {name:"Takayama Autumn (Hachiman)", city:"Takayama — Sakurayama Hachimangū", month:10, dates:"9–10 ottobre", info:"Yatai illuminati alla sera (yomatsuri) e danze di marionette.", ref:"https://www.hida.jp/english/festivalsandevents/4000209.html"},
+      // 13 Chichibu Yomatsuri
+      {name:"Chichibu Yomatsuri", city:"Chichibu — Chichibu Jinja", month:12, dates:"2–3 dicembre", info:"Grandioso festival notturno invernale con fuochi e carri.", ref:"https://www.chichibu-matsuri.jp/en/"},
+      // 14 Kishiwada Danjiri
+      {name:"Kishiwada Danjiri", city:"Kishiwada (Ōsaka)", month:9, dates:"metà settembre", info:"Carri in legno da 4 tonnellate lanciati in curve spettacolari.", ref:"https://www.city.kishiwada.lg.jp/site/danjiri/"},
+      // 15 Nada no Kenka
+      {name:"Nada no Kenka Matsuri", city:"Himeji — Matsubara Hachiman", month:10, dates:"14–15 ottobre", info:"“Festival delle lotte”: mikoshi che si scontrano ritualmente.", ref:"https://www.japan.travel/en/spot/26/"},
+      // 16 Hakata Dontaku
+      {name:"Hakata Dontaku", city:"Fukuoka", month:5, dates:"3–4 maggio", info:"Parate cittadine di Golden Week con milioni di spettatori.", ref:"https://www.japan.travel/en/spot/1972/"},
+      // 17 Tōka Ebisu
+      {name:"Tōka Ebisu", city:"Ōsaka — Imamiya Ebisu", month:1, dates:"9–11 gennaio", info:"Fortuna negli affari: fukuzasa (rami di bambù) e cortei.", ref:"https://www.gltjp.com/en/directory/item/16892/"},
+      // 18 Saidaiji Eyo (Hadaka)
+      {name:"Saidaiji Eyo (Hadaka Matsuri)", city:"Okayama — Saidaiji", month:2, dates:"3º sabato di febbraio", info:"10.000 uomini in mawashi lottano per i ‘shingi’ (fukuotoko).", ref:"https://okayama-cci.or.jp/activation/saidaijieyo/saidaijieyo_en.html"},
+      // 19 Setsubun
+      {name:"Setsubun (mamemaki)", city:"Nazionale (es. Nara/Kasuga Taisha)", month:2, dates:"2–4 febbraio (varia)", info:"Scaccia-demoni con lancio di fagioli; transizione a primavera.", ref:"https://www.japan-guide.com/e/e2285.html"},
+      // 20 Nagoshi no Harae
+      {name:"Nagoshi no Harae", city:"In molti santuari", month:6, dates:"30 giugno", info:"Grande purificazione di metà anno con passaggio nel chinowa.", ref:"https://d-museum.kokugakuin.ac.jp/eos/detail/?id=8895"}
+    ];
+
+    const MONTHS = ["","Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"];
+
+    function escapeHtml(s){return s.replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+
+    // Render tabella
+    function renderTable(rows){
+      const tb=document.querySelector('#festTable tbody'); tb.innerHTML='';
+      rows.forEach(f=>{
+        const tr=document.createElement('tr'); tr.tabIndex=0; tr.setAttribute('role','button');
+        tr.addEventListener('click',()=>openPanel(f));
+        tr.addEventListener('keypress',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPanel(f);}});
+
+        const td1=document.createElement('td');
+        td1.innerHTML=`<span class="tooltip">${escapeHtml(f.name)}<span class="tiptext" role="tooltip">${escapeHtml(f.info)}</span></span>`;
+        const td2=document.createElement('td'); td2.textContent=f.city;
+        const td3=document.createElement('td'); td3.innerHTML=`<span class="badge">${MONTHS[f.month]}</span>`;
+        const td4=document.createElement('td'); td4.textContent=f.dates;
+        const td5=document.createElement('td'); td5.innerHTML=f.ref?`<a href="${f.ref}" target="_blank" rel="noopener">Sito / Info</a>`:'<span class="note">—</span>';
+
+        tr.append(td1,td2,td3,td4,td5); tb.appendChild(tr);
+      });
+      document.getElementById('countFest').textContent = `${rows.length} festival`;
+    }
+
+    // Pannello dettaglio
+    function openPanel(f){
+      const box=document.getElementById('festPanel');
+      box.hidden=false;
+      box.innerHTML = `
+        <h3 class="panel-title">${escapeHtml(f.name)}</h3>
+        <div class="panel-grid">
+          <p><strong>Luogo:</strong> ${escapeHtml(f.city)}</p>
+          <p><strong>Quando:</strong> ${MONTHS[f.month]} — ${escapeHtml(f.dates)}</p>
+        </div>
+        <p>${escapeHtml(f.info)}</p>
+        ${f.ref?`<p><a href="${f.ref}" target="_blank" rel="noopener">Apri il riferimento ufficiale ↗</a></p>`:''}
+      `;
+      box.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+
+    // Filtri
+    function applyFilters(){
+      const q=document.getElementById('searchFest').value.toLowerCase().trim();
+      const m=parseInt(document.getElementById('monthFilter').value,10);
+      const filtered=FESTIVALS
+        .filter(f=>(m===0 || f.month===m))
+        .filter(f=>(q===''|| f.name.toLowerCase().includes(q)|| f.city.toLowerCase().includes(q)|| f.info.toLowerCase().includes(q)))
+        .sort((a,b)=>(a.month-b.month)||a.name.localeCompare(b.name));
+      renderTable(filtered);
+    }
+    document.getElementById('searchFest').addEventListener('input',applyFilters);
+    document.getElementById('monthFilter').addEventListener('change',applyFilters);
+    document.getElementById('resetCal').addEventListener('click',()=>{document.getElementById('searchFest').value='';document.getElementById('monthFilter').value='0';applyFilters();});
+
+    // Init
+    renderTable(FESTIVALS); applyFilters();
+  </script>
+</body>
+</html>
